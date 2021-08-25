@@ -47,13 +47,19 @@ function quebrarLampada() {
 }
 
 function piscarLampada() {
-    id("lampada")
+  id("lampada");
+  var intervalo = 0
+  var contador = 0
 
-    while(!lampadaQuebrada()) {
-        ligarLampada + desligarLampada
-    }
-
-    botoesLigaDesliga(true, true)
+  do {
+    botoesLigaDesliga(true, true);
+  } while (!lampadaQuebrada && contador < 10) {
+    intervalo += 200
+    setTimeout("lampada.src='img/ligada.jpg';", intervalo)
+    intervalo += 200
+    setTimeout("lampada.src='img/desligada.jpg';", intervalo)
+    contador++
+  }
 }
 
 //eventos
