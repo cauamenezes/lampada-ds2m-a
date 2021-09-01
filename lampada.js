@@ -1,15 +1,18 @@
 "use strict";
 
-const lampada = document.getElementById("lampada");
+let idLigar;
+let idDesligar;
 
-function id(elemento) {
+const lampada = getId("lampada");
+
+function getId(elemento) {
   return document.getElementById(elemento);
 }
 
 function botoesLigaDesliga(estadoLiga, estadoDesliga, estadoPisca) {
-  const botaoLigar = document.getElementById("ligar");
-  const botaoDesligar = document.getElementById("desligar");
-  const botaoPiscar = document.getElementById("piscar");
+  const botaoLigar = getId("ligar");
+  const botaoDesligar = getId("desligar");
+  const botaoPiscar = getId("piscar");
 
   botaoLigar.disabled = estadoLiga;
   botaoDesligar.disabled = estadoDesliga;
@@ -17,12 +20,12 @@ function botoesLigaDesliga(estadoLiga, estadoDesliga, estadoPisca) {
 }
 
 function lampadaQuebrada() {
-  id("lampada");
+  getId("lampada");
   return lampada.src.includes("quebrada");
 }
 
 function ligarLampada() {
-  id("lampada");
+  getId("lampada");
 
   if (!lampadaQuebrada()) {
     lampada.src = "img/ligada.jpg";
@@ -31,7 +34,7 @@ function ligarLampada() {
 }
 
 function desligarLampada() {
-  id("lampada");
+  getId("lampada");
 
   if (!lampadaQuebrada()) {
     lampada.src = "img/desligada.jpg";
@@ -40,31 +43,42 @@ function desligarLampada() {
 }
 
 function quebrarLampada() {
-  id("lampada");
+  getId("lampada");
 
   lampada.src = "img/quebrada.jpg";
   botoesLigaDesliga(true, true, true);
 }
 
 function piscarLampada() {
-    id("lampada")
+  const botaoPiscar = getId("piscar");
+  if (botaoPiscar.textContent == "Piscar") {
+    idLigar = setInterval(ligarLampada, 500);
+    idDesligar = setInterval(desligarLampada, 1000);
+    botaoPiscar.textContent = "Parar";
+  } else {
+    pararPiscar();
+    botaoPiscar.textContent = "Piscar";
+  }
+}
 
-    while(!lampadaQuebrada()) {
-        ligarLampada + desligarLampada
-    }
+function pararPiscar() {
+  clearInterval(idLigar);
+  clearInterval(idDesligar);
+}
 
-    botoesLigaDesliga(true, true)
+function quebrarLampadaPiscar() {
+  
 }
 
 //eventos
-id("ligar").addEventListener("click", ligarLampada);
+getId("ligar").addEventListener("click", ligarLampada);
 
-id("desligar").addEventListener("click", desligarLampada);
+getId("desligar").addEventListener("click", desligarLampada);
 
-id("piscar").addEventListener("click", piscarLampada);
+getId("piscar").addEventListener("click", piscarLampada);
 
-id("lampada").addEventListener("mouseover", ligarLampada);
+getId("lampada").addEventListener("mouseover", ligarLampada);
 
-id("lampada").addEventListener("mouseleave", desligarLampada);
+getId("lampada").addEventListener("mouseleave", desligarLampada);
 
-id("lampada").addEventListener("dblclick", quebrarLampada);
+getId("lampada").addEventListener("dblclick", quebrarLampada);
