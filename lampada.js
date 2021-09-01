@@ -66,10 +66,6 @@ function pararPiscar() {
   clearInterval(idDesligar);
 }
 
-function quebrarLampadaPiscar() {
-  
-}
-
 //eventos
 getId("ligar").addEventListener("click", ligarLampada);
 
