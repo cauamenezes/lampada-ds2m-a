@@ -1,56 +1,55 @@
 "use strict";
-
+const lampada = document.getElementById("lampada");
 let idLigar;
 let idDesligar;
 
-const lampada = getId("lampada");
+// function id(elemento) {
+//     return document.getElementById(elemento)
+// }
 
-function getId(elemento) {
-  return document.getElementById(elemento);
-}
+const getId = (elemento) => document.getElementById(elemento);
 
-function botoesLigaDesliga(estadoLiga, estadoDesliga, estadoPisca) {
+const botoesLigaDesliga = (estadoLiga, estadoDesliga, estadoPisca) => {
   const botaoLigar = getId("ligar");
   const botaoDesligar = getId("desligar");
   const botaoPiscar = getId("piscar");
-
   botaoLigar.disabled = estadoLiga;
   botaoDesligar.disabled = estadoDesliga;
   botaoPiscar.disabled = estadoPisca;
-}
+};
 
-function lampadaQuebrada() {
-  getId("lampada");
-  return lampada.src.includes("quebrada");
-}
+// function lampadaQuebrada() {
+//     return lampada.src.includes("quebrada")
+// }
 
-function ligarLampada() {
-  getId("lampada");
+const lampadaQuebrada = () => lampada.src.includes("quebrada");
 
+const ligarLampada = () => {
   if (!lampadaQuebrada()) {
     lampada.src = "img/ligada.jpg";
     botoesLigaDesliga(true, false);
   }
-}
+};
 
-function desligarLampada() {
-  getId("lampada");
-
+const desligarLampada = () => {
   if (!lampadaQuebrada()) {
     lampada.src = "img/desligada.jpg";
     botoesLigaDesliga(false, true);
   }
-}
+};
 
-function quebrarLampada() {
-  getId("lampada");
-
+const quebrarLampada = () => {
   lampada.src = "img/quebrada.jpg";
   botoesLigaDesliga(true, true, true);
-}
+};
 
-function piscarLampada() {
-  const botaoPiscar = getId("piscar");
+const pararPiscar = () => {
+  clearInterval(idLigar);
+  clearInterval(idDesligar);
+};
+
+const piscarLampada = () => {
+  const botaoPiscar = document.getElementById("piscar");
   if (botaoPiscar.textContent == "Piscar") {
     idLigar = setInterval(ligarLampada, 500);
     idDesligar = setInterval(desligarLampada, 1000);
@@ -59,14 +58,9 @@ function piscarLampada() {
     pararPiscar();
     botaoPiscar.textContent = "Piscar";
   }
-}
+};
 
-function pararPiscar() {
-  clearInterval(idLigar);
-  clearInterval(idDesligar);
-}
-
-//eventos
+// eventos
 getId("ligar").addEventListener("click", ligarLampada);
 
 getId("desligar").addEventListener("click", desligarLampada);
