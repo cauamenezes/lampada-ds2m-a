@@ -48,6 +48,14 @@ const pararPiscar = () => {
   clearInterval(idDesligar);
 };
 
+const mudarCorBotaoPiscar = () => {
+  const botaoPiscar = getId("piscar");
+
+  if (botaoPiscar.content == "Parar") {
+    botaoPiscar.style.backgroundColor = "#FF0000";
+  }
+};
+
 const piscarLampada = () => {
   const botaoPiscar = document.getElementById("piscar");
   if (botaoPiscar.textContent == "Piscar") {
@@ -57,6 +65,7 @@ const piscarLampada = () => {
   } else {
     pararPiscar();
     botaoPiscar.textContent = "Piscar";
+    mudarCorBotaoPiscar();
   }
 };
 

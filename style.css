@@ -11,6 +11,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-family: sans-serif;
 }
 
 header {
@@ -35,7 +36,8 @@ footer {
   font-style: italic;
 }
 
-button {
+button,
+#piscar {
   width: 100px;
   height: 40px;
   cursor: pointer;
@@ -43,4 +45,8 @@ button {
 
 img {
   cursor: pointer;
+}
+
+#piscar {
+  background-color: lightgreen;
 }
