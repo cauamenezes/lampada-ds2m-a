@@ -48,24 +48,17 @@ const pararPiscar = () => {
   clearInterval(idDesligar);
 };
 
-const mudarCorBotaoPiscar = () => {
-  const botaoPiscar = getId("piscar");
-
-  if (botaoPiscar.content == "Parar") {
-    botaoPiscar.style.backgroundColor = "#FF0000";
-  }
-};
-
 const piscarLampada = () => {
   const botaoPiscar = document.getElementById("piscar");
   if (botaoPiscar.textContent == "Piscar") {
     idLigar = setInterval(ligarLampada, 500);
     idDesligar = setInterval(desligarLampada, 1000);
     botaoPiscar.textContent = "Parar";
+    botaoPiscar.style.backgroundColor = "#FF0000";
   } else {
     pararPiscar();
     botaoPiscar.textContent = "Piscar";
-    mudarCorBotaoPiscar();
+    botaoPiscar.style.backgroundColor = "#00FF00";
   }
 };
 
