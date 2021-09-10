@@ -36,11 +36,11 @@ footer {
   font-style: italic;
 }
 
-button,
-#piscar {
+button {
   width: 100px;
   height: 40px;
   cursor: pointer;
+  font-weight: bold;
 }
 
 img {
