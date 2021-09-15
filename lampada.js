@@ -48,6 +48,7 @@ const pararPiscar = () => {
   clearInterval(idDesligar);
 };
 
+// Issue #2 resolvida
 const piscarLampada = () => {
   const botaoPiscar = document.getElementById("piscar");
   if (botaoPiscar.textContent == "Piscar") {
